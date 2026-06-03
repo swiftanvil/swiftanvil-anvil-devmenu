@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/vishalsingh/Documents/v-i-s-h-a-l/github/iFoundation/Packages/swiftanvil-anvil-devmenu/.build/arm64-apple-macosx/debug/AnvilDevMenuPackageTests.build/primary.swiftdeps"
+  },
+  "/Users/vishalsingh/Documents/v-i-s-h-a-l/github/iFoundation/Packages/swiftanvil-anvil-devmenu/.build/arm64-apple-macosx/debug/AnvilDevMenuPackageTests.derived/runner.swift": {
+    "dependencies": "/Users/vishalsingh/Documents/v-i-s-h-a-l/github/iFoundation/Packages/swiftanvil-anvil-devmenu/.build/arm64-apple-macosx/debug/AnvilDevMenuPackageTests.build/runner.d",
+    "object": "/Users/vishalsingh/Documents/v-i-s-h-a-l/github/iFoundation/Packages/swiftanvil-anvil-devmenu/.build/arm64-apple-macosx/debug/AnvilDevMenuPackageTests.build/runner.swift.o",
+    "swiftmodule": "/Users/vishalsingh/Documents/v-i-s-h-a-l/github/iFoundation/Packages/swiftanvil-anvil-devmenu/.build/arm64-apple-macosx/debug/AnvilDevMenuPackageTests.build/runner~partial.swiftmodule",
+    "swift-dependencies": "/Users/vishalsingh/Documents/v-i-s-h-a-l/github/iFoundation/Packages/swiftanvil-anvil-devmenu/.build/arm64-apple-macosx/debug/AnvilDevMenuPackageTests.build/runner.swiftdeps",
+    "diagnostics": "/Users/vishalsingh/Documents/v-i-s-h-a-l/github/iFoundation/Packages/swiftanvil-anvil-devmenu/.build/arm64-apple-macosx/debug/AnvilDevMenuPackageTests.build/runner.dia"
+  }
+}
