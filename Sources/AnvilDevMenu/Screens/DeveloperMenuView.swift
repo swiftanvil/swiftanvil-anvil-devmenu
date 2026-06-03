@@ -5,15 +5,21 @@ import SwiftUI
 public struct DeveloperMenuView: View {
     @Environment(\.dismiss) private var dismiss
     
-    private let menuItems: [MenuItem] = [
-        MenuItem(title: "Feature Flags", systemImage: "flag.fill", screen: .featureFlags),
-        MenuItem(title: "Network", systemImage: "network", screen: .network),
-        MenuItem(title: "Device Info", systemImage: "info.circle.fill", screen: .deviceInfo),
-        MenuItem(title: "Console", systemImage: "terminal.fill", screen: .console),
-        MenuItem(title: "Custom Actions", systemImage: "bolt.fill", screen: .customActions),
-    ]
+    private let configuration: DeveloperMenuConfiguration
     
-    public init() {}
+    private var menuItems: [MenuItem] {
+        [
+            MenuItem(title: "Feature Flags", systemImage: "flag.fill", screen: .featureFlags),
+            MenuItem(title: "Network", systemImage: "network", screen: .network),
+            MenuItem(title: "Device Info", systemImage: "info.circle.fill", screen: .deviceInfo),
+            MenuItem(title: "Console", systemImage: "terminal.fill", screen: .console),
+            MenuItem(title: "Custom Actions", systemImage: "bolt.fill", screen: .customActions),
+        ]
+    }
+    
+    public init(configuration: DeveloperMenuConfiguration = DeveloperMenu.shared.currentConfiguration) {
+        self.configuration = configuration
+    }
     
     public var body: some View {
         NavigationStack {
@@ -22,7 +28,7 @@ public struct DeveloperMenuView: View {
                     Label(item.title, systemImage: item.systemImage)
                 }
             }
-            .navigationTitle("Developer Menu")
+            .navigationTitle(configuration.title)
             .navigationDestination(for: MenuScreen.self) { screen in
                 switch screen {
                 case .featureFlags:

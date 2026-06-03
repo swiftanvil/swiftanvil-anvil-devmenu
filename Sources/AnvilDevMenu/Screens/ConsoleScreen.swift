@@ -52,7 +52,7 @@ public struct ConsoleScreen: View {
     
     @ViewBuilder
     private var emptyView: some View {
-        if #available(macOS 14.0, *) {
+        if #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, visionOS 1.0, *) {
             ContentUnavailableView("No Logs", systemImage: "terminal", description: Text("Log messages will appear here"))
         } else {
             VStack {

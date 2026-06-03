@@ -44,7 +44,7 @@ public struct DeveloperMenu: Sendable {
     }
     
     @MainActor
-    var currentConfiguration: DeveloperMenuConfiguration {
+    public var currentConfiguration: DeveloperMenuConfiguration {
         configuration
     }
 }
