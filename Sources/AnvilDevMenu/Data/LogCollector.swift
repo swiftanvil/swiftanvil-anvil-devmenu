@@ -1,7 +1,7 @@
 import Foundation
 
 /// Collects log messages for the console screen.
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 @MainActor
 public final class LogCollector: ObservableObject, Sendable {
     public static let shared = LogCollector()
@@ -32,7 +32,7 @@ public final class LogCollector: ObservableObject, Sendable {
     }
 }
 
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 public struct LogMessage: Sendable, Identifiable {
     public let id = UUID()
     public let timestamp: Date

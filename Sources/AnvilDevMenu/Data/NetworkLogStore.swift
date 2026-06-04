@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 /// Stores network request/response logs for the developer menu.
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 @MainActor
 public final class NetworkLogStore: ObservableObject, Sendable {
     public static let shared = NetworkLogStore()

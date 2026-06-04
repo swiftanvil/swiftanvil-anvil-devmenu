@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Displays and toggles feature flags.
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 public struct FeatureFlagsScreen: View {
     @State private var flags: [String: Bool] = [:]
     

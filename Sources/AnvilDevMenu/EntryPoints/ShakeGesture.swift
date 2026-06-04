@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// A view modifier that presents the developer menu on device shake.
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 public struct DeveloperMenuShakeModifier: ViewModifier {
     @State private var isPresented = false
     
@@ -21,7 +21,7 @@ public struct DeveloperMenuShakeModifier: ViewModifier {
     }
 }
 
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 extension View {
     /// Adds shake-to-open support for the developer menu.
     public func developerMenuOnShake() -> some View {

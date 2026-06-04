@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// The main developer menu view.
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 public struct DeveloperMenuView: View {
     @Environment(\.dismiss) private var dismiss
     

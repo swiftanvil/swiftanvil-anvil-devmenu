@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// A view modifier that presents the developer menu on triple-tap.
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 public struct DeveloperMenuGestureOverlay: ViewModifier {
     @State private var isPresented = false
     
@@ -21,7 +21,7 @@ public struct DeveloperMenuGestureOverlay: ViewModifier {
     }
 }
 
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 extension View {
     /// Adds a triple-tap gesture to present the developer menu.
     public func developerMenuOverlay() -> some View {

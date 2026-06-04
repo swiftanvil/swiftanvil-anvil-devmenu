@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Displays collected log messages.
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 public struct ConsoleScreen: View {
     @StateObject private var collector = LogCollector.shared
     @State private var filter: LogLevel?
@@ -52,17 +52,7 @@ public struct ConsoleScreen: View {
     
     @ViewBuilder
     private var emptyView: some View {
-        if #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, visionOS 1.0, *) {
-            ContentUnavailableView("No Logs", systemImage: "terminal", description: Text("Log messages will appear here"))
-        } else {
-            VStack {
-                Image(systemName: "terminal")
-                Text("No Logs")
-                Text("Log messages will appear here")
-                    .font(.caption)
-            }
-            .foregroundStyle(.secondary)
-        }
+        ContentUnavailableView("No Logs", systemImage: "terminal", description: Text("Log messages will appear here"))
     }
     
     private var filteredMessages: [LogMessage] {

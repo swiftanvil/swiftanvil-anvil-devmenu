@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Displays device and app information.
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 public struct DeviceInfoScreen: View {
     private let info = DeviceInfo.current()
     
@@ -23,7 +23,7 @@ public struct DeviceInfoScreen: View {
     }
 }
 
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 struct InfoRow: View {
     let label: String
     let value: String

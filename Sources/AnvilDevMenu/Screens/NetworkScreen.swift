@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Displays network request/response logs.
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 public struct NetworkScreen: View {
     @StateObject private var store = NetworkLogStore.shared
     
@@ -45,16 +45,6 @@ public struct NetworkScreen: View {
     
     @ViewBuilder
     private var emptyView: some View {
-        if #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, visionOS 1.0, *) {
-            ContentUnavailableView("No Requests", systemImage: "network", description: Text("Network activity will appear here"))
-        } else {
-            VStack {
-                Image(systemName: "network")
-                Text("No Requests")
-                Text("Network activity will appear here")
-                    .font(.caption)
-            }
-            .foregroundStyle(.secondary)
-        }
+        ContentUnavailableView("No Requests", systemImage: "network", description: Text("Network activity will appear here"))
     }
 }

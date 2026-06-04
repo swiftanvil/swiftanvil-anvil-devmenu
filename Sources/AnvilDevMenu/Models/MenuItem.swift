@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// A menu item in the developer menu.
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 public struct MenuItem: Sendable, Identifiable {
     public let id = UUID()
     public let title: String
@@ -16,7 +16,7 @@ public struct MenuItem: Sendable, Identifiable {
 }
 
 /// The available screens in the developer menu.
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 public enum MenuScreen: Sendable {
     case featureFlags
     case network

@@ -1,7 +1,7 @@
 import Foundation
 
 /// System and app information for the device info screen.
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 public struct DeviceInfo: Sendable {
     public let osVersion: String
     public let deviceModel: String

@@ -12,7 +12,7 @@ import SwiftUI
 ///     .developerMenuOverlay()
 /// #endif
 /// ```
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 public struct DeveloperMenu: Sendable {
     @MainActor
     public static var shared = DeveloperMenu()
@@ -51,7 +51,7 @@ public struct DeveloperMenu: Sendable {
 
 // MARK: - Configuration
 
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 public struct DeveloperMenuConfiguration: Sendable {
     public let title: String
     public let accentColor: Color
@@ -90,7 +90,7 @@ public struct CustomAction: Sendable, Identifiable {
 
 // MARK: - Registry
 
-@available(iOS 16, macOS 13, tvOS 16, watchOS 9, visionOS 1, *)
+
 public actor CustomActionRegistry {
     public static let shared = CustomActionRegistry()
     private var actions: [CustomAction] = []
