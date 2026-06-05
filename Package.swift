@@ -8,8 +8,13 @@ let package = Package(
     products: [
         .library(name: "AnvilDevMenu", targets: ["AnvilDevMenu"]),
     ],
+    dependencies: [
+        .package(path: "../swiftanvil-anvil-core"),
+    ],
     targets: [
-        .target(name: "AnvilDevMenu"),
+        .target(name: "AnvilDevMenu", dependencies: [
+            .product(name: "AnvilCore", package: "swiftanvil-anvil-core"),
+        ]),
         .testTarget(name: "AnvilDevMenuTests", dependencies: ["AnvilDevMenu"]),
     ],
     swiftLanguageModes: [.v6]

@@ -1,5 +1,6 @@
 import Foundation
 import Testing
+import AnvilCore
 @testable import AnvilDevMenu
 
 // MARK: - DeviceInfo Tests
@@ -162,6 +163,55 @@ struct LogCollectorTests {
         }
         
         #expect(collector.messages.count == 500)
+    }
+    
+    @Test("bridgeToAnvilLogger logs to AnvilLogger and local messages")
+    func bridgeToAnvilLogger() async {
+        let collector = LogCollector.makeForTesting()
+        
+        await collector.bridgeToAnvilLogger(level: .info, message: "Bridged message")
+        
+        #expect(collector.messages.count == 1)
+        #expect(collector.messages[0].message == "Bridged message")
+        #expect(collector.messages[0].level == .info)
+        
+        let entries = await collector.anvilLogger.allEntries
+        #expect(entries.count == 1)
+        #expect(entries[0].level == .info)
+        #expect(entries[0].message == "Bridged message")
+    }
+    
+    @Test("bridgeToAnvilLogger maps levels correctly")
+    func bridgeLevelMapping() async {
+        let collector = LogCollector.makeForTesting()
+        
+        await collector.bridgeToAnvilLogger(level: .debug, message: "Debug msg")
+        await collector.bridgeToAnvilLogger(level: .warn, message: "Warn msg")
+        await collector.bridgeToAnvilLogger(level: .error, message: "Error msg")
+        
+        let entries = await collector.anvilLogger.allEntries
+        #expect(entries.count == 3)
+        #expect(entries[0].level == .debug)
+        #expect(entries[1].level == .warn)
+        #expect(entries[2].level == .error)
+        
+        #expect(collector.messages[0].level == .debug)
+        #expect(collector.messages[1].level == .warning)
+        #expect(collector.messages[2].level == .error)
+    }
+    
+    @Test("clear clears AnvilLogger entries")
+    func clearClearsAnvilLogger() async {
+        let collector = LogCollector.makeForTesting()
+        
+        await collector.bridgeToAnvilLogger(level: .info, message: "Message")
+        collector.clear()
+        
+        // Allow the async clear task to complete
+        try? await Task.sleep(nanoseconds: 10_000_000)
+        
+        let entries = await collector.anvilLogger.allEntries
+        #expect(entries.isEmpty)
     }
 }
 
