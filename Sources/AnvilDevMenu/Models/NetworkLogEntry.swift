@@ -1,6 +1,6 @@
 import Foundation
 
-/// A logged network request/response pair.
+// A logged network request/response pair.
 
 public struct NetworkLogEntry: Sendable, Identifiable {
     public let id = UUID()
@@ -10,13 +10,13 @@ public struct NetworkLogEntry: Sendable, Identifiable {
     public let statusCode: Int
     public let requestBody: Data?
     public let responseBody: Data?
-    
+
     public var statusDescription: String {
         switch statusCode {
-        case 200...299: return "✅ \(statusCode)"
-        case 400...499: return "⚠️ \(statusCode)"
-        case 500...599: return "❌ \(statusCode)"
-        default: return "⬜ \(statusCode)"
+        case 200 ... 299: "✅ \(statusCode)"
+        case 400 ... 499: "⚠️ \(statusCode)"
+        case 500 ... 599: "❌ \(statusCode)"
+        default: "⬜ \(statusCode)"
         }
     }
 }

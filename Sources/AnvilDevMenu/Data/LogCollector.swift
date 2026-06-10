@@ -1,25 +1,25 @@
-import Foundation
 import AnvilCore
+import Foundation
 
-/// Collects log messages for the console screen.
+// Collects log messages for the console screen.
 
 @MainActor
 public final class LogCollector: ObservableObject, Sendable {
     public static let shared = LogCollector()
-    
+
     @Published public private(set) var messages: [LogMessage] = []
     private let maxMessages = 500
-    
+
     /// The underlying `AnvilLogger` that backs this collector.
     public let anvilLogger = AnvilLogger()
-    
-    private init() {}
-    
+
+    private init() { }
+
     /// Creates a fresh collector for testing. Not for production use.
     static func makeForTesting() -> LogCollector {
         LogCollector()
     }
-    
+
     /// Appends a log message.
     public func append(level: LogLevel, message: String, file: String = "", line: Int = 0) {
         let entry = LogMessage(
@@ -34,20 +34,24 @@ public final class LogCollector: ObservableObject, Sendable {
             messages.removeFirst(messages.count - maxMessages)
         }
     }
-    
+
     /// Bridges a message to `AnvilLogger` and also appends it locally.
-    public func bridgeToAnvilLogger(level: AnvilLogger.Level, message: String, file: String = #file, line: Int = #line) async {
+    public func bridgeToAnvilLogger(
+        level: AnvilLogger.Level,
+        message: String,
+        file: String = #file,
+        line: Int = #line
+    ) async {
         await anvilLogger.log(level, message, file: file, line: line)
-        let localLevel: LogLevel
-        switch level {
-        case .trace, .debug: localLevel = .debug
-        case .info: localLevel = .info
-        case .warn: localLevel = .warning
-        case .error: localLevel = .error
+        let localLevel: LogLevel = switch level {
+        case .trace, .debug: .debug
+        case .info: .info
+        case .warn: .warning
+        case .error: .error
         }
         append(level: localLevel, message: message, file: file, line: line)
     }
-    
+
     /// Clears all messages and the underlying `AnvilLogger`.
     public func clear() {
         messages.removeAll()
@@ -56,7 +60,6 @@ public final class LogCollector: ObservableObject, Sendable {
         }
     }
 }
-
 
 public struct LogMessage: Sendable, Identifiable {
     public let id = UUID()
@@ -72,13 +75,13 @@ public enum LogLevel: String, Sendable, CaseIterable {
     case info = "INFO"
     case warning = "WARN"
     case error = "ERROR"
-    
+
     public var color: String {
         switch self {
-        case .debug: return "⚪"
-        case .info: return "🔵"
-        case .warning: return "🟡"
-        case .error: return "🔴"
+        case .debug: "⚪"
+        case .info: "🔵"
+        case .warning: "🟡"
+        case .error: "🔴"
         }
     }
 }

@@ -12,7 +12,7 @@ struct NetworkLogStoreExtendedTests {
         let store = NetworkLogStore.shared
         store.clear()
 
-        for i in 0..<100 {
+        for i in 0 ..< 100 {
             let entry = NetworkLogEntry(
                 timestamp: Date(),
                 method: "GET",
@@ -42,7 +42,7 @@ struct NetworkLogStoreExtendedTests {
         )
         store.append(firstEntry)
 
-        for i in 0..<100 {
+        for i in 0 ..< 100 {
             let entry = NetworkLogEntry(
                 timestamp: Date(),
                 method: "GET",
@@ -62,7 +62,7 @@ struct NetworkLogStoreExtendedTests {
         let store = NetworkLogStore.shared
         store.clear()
 
-        for i in 0..<105 {
+        for i in 0 ..< 105 {
             let entry = NetworkLogEntry(
                 timestamp: Date(),
                 method: "GET",
@@ -82,7 +82,7 @@ struct NetworkLogStoreExtendedTests {
         let store = NetworkLogStore.shared
         store.clear()
 
-        for i in 0..<10 {
+        for i in 0 ..< 10 {
             let entry = NetworkLogEntry(
                 timestamp: Date(),
                 method: "GET",
@@ -151,7 +151,7 @@ struct MenuItemExtendedTests {
             MenuItem(title: "Network", systemImage: "network", screen: .network),
             MenuItem(title: "Device Info", systemImage: "info", screen: .deviceInfo),
             MenuItem(title: "Console", systemImage: "terminal", screen: .console),
-            MenuItem(title: "Custom Actions", systemImage: "bolt", screen: .customActions),
+            MenuItem(title: "Custom Actions", systemImage: "bolt", screen: .customActions)
         ]
 
         #expect(items.count == 5)
@@ -172,7 +172,7 @@ struct MenuItemExtendedTests {
     @Test("MenuItem is Sendable")
     func sendable() {
         let item = MenuItem(title: "Sendable", systemImage: "checkmark", screen: .console)
-        let _ = item as Sendable
+        _ = item as Sendable
     }
 
     @Test("different items have different IDs")
@@ -191,7 +191,7 @@ struct MenuScreenTests {
     func allCasesSendable() {
         let screens: [MenuScreen] = [.featureFlags, .network, .deviceInfo, .console, .customActions]
         for screen in screens {
-            let _ = screen as Sendable
+            _ = screen as Sendable
         }
     }
 }
@@ -227,7 +227,7 @@ struct DeviceInfoExtendedTests {
     @Test("DeviceInfo is Sendable")
     func sendable() {
         let info = DeviceInfo.current()
-        let _ = info as Sendable
+        _ = info as Sendable
     }
 }
 
@@ -258,23 +258,23 @@ struct DeveloperMenuExtendedTests {
 
     @Test("CustomAction stores name and image")
     func customActionProperties() {
-        let action = CustomAction(name: "Refresh", systemImage: "arrow.clockwise") {}
+        let action = CustomAction(name: "Refresh", systemImage: "arrow.clockwise") { }
         #expect(action.name == "Refresh")
         #expect(action.systemImage == "arrow.clockwise")
     }
 
     @Test("CustomAction has unique ID")
     func customActionUniqueID() {
-        let a = CustomAction(name: "A", systemImage: "a") {}
-        let b = CustomAction(name: "B", systemImage: "b") {}
+        let a = CustomAction(name: "A", systemImage: "a") { }
+        let b = CustomAction(name: "B", systemImage: "b") { }
         #expect(a.id != b.id)
     }
 
     @Test("CustomActionRegistry registers multiple actions")
     func registryMultiple() async {
         let registry = CustomActionRegistry.shared
-        let action1 = CustomAction(name: "One", systemImage: "1") {}
-        let action2 = CustomAction(name: "Two", systemImage: "2") {}
+        let action1 = CustomAction(name: "One", systemImage: "1") { }
+        let action2 = CustomAction(name: "Two", systemImage: "2") { }
 
         await registry.register(action1)
         await registry.register(action2)
@@ -370,7 +370,7 @@ struct NetworkLogEntryExtendedTests {
             requestBody: nil,
             responseBody: nil
         )
-        let _ = entry.id
+        _ = entry.id
     }
 
     @Test("NetworkLogEntry is Sendable")
@@ -383,7 +383,7 @@ struct NetworkLogEntryExtendedTests {
             requestBody: nil,
             responseBody: nil
         )
-        let _ = entry as Sendable
+        _ = entry as Sendable
     }
 }
 
@@ -397,7 +397,7 @@ struct LogCollectorExtendedTests {
         let collector = LogCollector.shared
         collector.clear()
 
-        for i in 0..<500 {
+        for i in 0 ..< 500 {
             collector.append(level: .debug, message: "Message \(i)")
         }
 
@@ -411,7 +411,7 @@ struct LogCollectorExtendedTests {
 
         collector.append(level: .info, message: "first")
 
-        for i in 0..<500 {
+        for i in 0 ..< 500 {
             collector.append(level: .debug, message: "Message \(i)")
         }
 
@@ -423,7 +423,7 @@ struct LogCollectorExtendedTests {
         let collector = LogCollector.shared
         collector.clear()
 
-        for i in 0..<505 {
+        for i in 0 ..< 505 {
             collector.append(level: .debug, message: "Message \(i)")
         }
 
@@ -463,7 +463,7 @@ struct LogCollectorExtendedTests {
         let collector = LogCollector.shared
         collector.clear()
 
-        for i in 0..<50 {
+        for i in 0 ..< 50 {
             collector.append(level: .info, message: "\(i)")
         }
         collector.clear()
@@ -500,7 +500,7 @@ struct LogMessageTests {
             file: "",
             line: 0
         )
-        let _ = msg as Sendable
+        _ = msg as Sendable
     }
 }
 

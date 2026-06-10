@@ -1,12 +1,12 @@
 import SwiftUI
 
-/// Displays network request/response logs.
+// Displays network request/response logs.
 
 public struct NetworkScreen: View {
     @StateObject private var store = NetworkLogStore.shared
-    
-    public init() {}
-    
+
+    public init() { }
+
     public var body: some View {
         List(store.entries) { entry in
             VStack(alignment: .leading, spacing: 4) {
@@ -42,9 +42,12 @@ public struct NetworkScreen: View {
             }
         }
     }
-    
-    @ViewBuilder
+
     private var emptyView: some View {
-        ContentUnavailableView("No Requests", systemImage: "network", description: Text("Network activity will appear here"))
+        ContentUnavailableView(
+            "No Requests",
+            systemImage: "network",
+            description: Text("Network activity will appear here")
+        )
     }
 }

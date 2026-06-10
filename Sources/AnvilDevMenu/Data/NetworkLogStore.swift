@@ -1,17 +1,17 @@
 import Foundation
 import SwiftUI
 
-/// Stores network request/response logs for the developer menu.
+// Stores network request/response logs for the developer menu.
 
 @MainActor
 public final class NetworkLogStore: ObservableObject, Sendable {
     public static let shared = NetworkLogStore()
-    
+
     @Published public private(set) var entries: [NetworkLogEntry] = []
     private let maxEntries = 100
-    
-    private init() {}
-    
+
+    private init() { }
+
     /// Appends a network log entry.
     public func append(_ entry: NetworkLogEntry) {
         entries.append(entry)
@@ -19,7 +19,7 @@ public final class NetworkLogStore: ObservableObject, Sendable {
             entries.removeFirst(entries.count - maxEntries)
         }
     }
-    
+
     /// Clears all log entries.
     public func clear() {
         entries.removeAll()

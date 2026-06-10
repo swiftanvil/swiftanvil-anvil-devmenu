@@ -1,34 +1,34 @@
 import SwiftUI
 
-/// The public API for the developer menu.
-///
-/// Use `#if DEBUG` at the call site to strip from release builds:
-///
-/// ```swift
-/// #if DEBUG
-/// import AnvilDevMenu
-///
-/// ContentView()
-///     .developerMenuOverlay()
-/// #endif
-/// ```
+// The public API for the developer menu.
+//
+// Use `#if DEBUG` at the call site to strip from release builds:
+//
+// ```swift
+// #if DEBUG
+// import AnvilDevMenu
+//
+// ContentView()
+//     .developerMenuOverlay()
+// #endif
+// ```
 
 public struct DeveloperMenu: Sendable {
     @MainActor
     public static var shared = DeveloperMenu()
-    
+
     @MainActor
     private var configuration: DeveloperMenuConfiguration = .default
-    
+
     @MainActor
-    private init() {}
-    
+    private init() { }
+
     /// Configures the developer menu with integrations.
     @MainActor
     public static func configure(_ configuration: DeveloperMenuConfiguration) {
         shared.configuration = configuration
     }
-    
+
     /// Adds a custom action to the menu.
     @MainActor
     public static func addAction(_ action: CustomAction) {
@@ -36,13 +36,13 @@ public struct DeveloperMenu: Sendable {
             await CustomActionRegistry.shared.register(action)
         }
     }
-    
+
     /// Presents the developer menu programmatically.
     @MainActor
     public static func present() {
         NotificationCenter.default.post(name: .presentDeveloperMenu, object: nil)
     }
-    
+
     @MainActor
     public var currentConfiguration: DeveloperMenuConfiguration {
         configuration
@@ -51,11 +51,10 @@ public struct DeveloperMenu: Sendable {
 
 // MARK: - Configuration
 
-
 public struct DeveloperMenuConfiguration: Sendable {
     public let title: String
     public let accentColor: Color
-    
+
     public init(
         title: String = "Developer Menu",
         accentColor: Color = .blue
@@ -63,7 +62,7 @@ public struct DeveloperMenuConfiguration: Sendable {
         self.title = title
         self.accentColor = accentColor
     }
-    
+
     public static let `default` = DeveloperMenuConfiguration()
 }
 
@@ -74,7 +73,7 @@ public struct CustomAction: Sendable, Identifiable {
     public let name: String
     public let systemImage: String
     public let action: @Sendable () async -> Void
-    
+
     public init(
         id: UUID = UUID(),
         name: String,
@@ -90,15 +89,14 @@ public struct CustomAction: Sendable, Identifiable {
 
 // MARK: - Registry
 
-
 public actor CustomActionRegistry {
     public static let shared = CustomActionRegistry()
     private var actions: [CustomAction] = []
-    
+
     public func register(_ action: CustomAction) {
         actions.append(action)
     }
-    
+
     public func allActions() -> [CustomAction] {
         actions
     }

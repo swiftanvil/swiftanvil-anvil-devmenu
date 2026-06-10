@@ -1,13 +1,13 @@
 import SwiftUI
 
-/// Displays and runs user-defined custom actions.
+// Displays and runs user-defined custom actions.
 
 public struct CustomActionsScreen: View {
     @State private var actions: [CustomAction] = []
     @State private var isRunning: Set<UUID> = []
-    
-    public init() {}
-    
+
+    public init() { }
+
     public var body: some View {
         List(actions) { action in
             Button {
@@ -38,8 +38,7 @@ public struct CustomActionsScreen: View {
             }
         }
     }
-    
-    @ViewBuilder
+
     private var emptyView: some View {
         ContentUnavailableView(
             "No Actions",
